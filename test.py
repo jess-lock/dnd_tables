@@ -43,6 +43,23 @@ while keepGoing:
     # print("\n")
     # print(diceMax)
     roll = randrange(1, diceMax+1)
-    print("###\n\tRolled", roll, "on the", sheet,"table\n\t", current_df.iloc[roll-1].loc[1],"\n###")
-    
+    print("###\n\t ``Rolled", roll, "on the", sheet,"table\n\t", current_df.iloc[roll-1].loc[1])
+    if len(current_df.columns) == 3:
+        initialDice = current_df.iloc[roll-1].loc[2]
+        numberOfDice, diceNumber = initialDice.split("d")
 
+        # diceNumber = int(initialDice[1].split("d"))
+        if "+" in initialDice:
+            diceNumber, addition = diceNumber.split("+")
+        else:
+            addition = 0
+        # print(initialDice)
+        # print(numberOfDice)   
+        # print(addition)
+        total = 0
+        for i in range(0, int(numberOfDice)):
+            total = total + randrange(1, int(diceNumber))
+        
+        total = total+int(addition)
+        print("\t",initialDice, "gives", total)
+        print("\n###")
