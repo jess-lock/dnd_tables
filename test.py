@@ -13,6 +13,8 @@ def inputMatching(inp):
             return "Settlements"
         case 2:
             return "Ruins"
+        case 3: 
+            return "Long Rambly Name"
         case _:
             return "Error"
 
@@ -24,10 +26,15 @@ for sheet_name in excel_data.sheet_names:
     sheet_dataframes[sheet_name] = pd.read_excel(excel_file_path, sheet_name=sheet_name, header=None)
 
 keepGoing = True
+# print(len(sheet_dataframes))
 
 while keepGoing:
-
-    introText = "\nWhat table do you want to roll?\n(1) Settlements\n(2) Ruins\n Input:"
+    introText = "\nWhat table do you want to roll?" #\n(1) Settlements\n(2) Ruins\n Input:"
+    for j in range(1, len(sheet_dataframes)+1):
+        # print(j)
+        introText = introText + f"\n{j} {inputMatching(j)}"
+    
+    introText = introText + "\n Input: "
     choice = input(introText)
     if (choice == "exit") or (choice == "quit") or (choice == "q"):
         exit()
@@ -37,13 +44,9 @@ while keepGoing:
         continue
 
     current_df = sheet_dataframes[sheet]
-    # print(current_df)
-    # print(current_df.head())
     diceMax = len(current_df)
-    # print("\n")
-    # print(diceMax)
     roll = randrange(1, diceMax+1)
-    print("###\n\t ``Rolled", roll, "on the", sheet,"table\n\t", current_df.iloc[roll-1].loc[1])
+    print("###\n\t Rolled", roll, "on the", sheet,"table\n\t", current_df.iloc[roll-1].loc[1])
     if len(current_df.columns) == 3:
         initialDice = current_df.iloc[roll-1].loc[2]
         numberOfDice, diceNumber = initialDice.split("d")
@@ -62,4 +65,4 @@ while keepGoing:
         
         total = total+int(addition)
         print("\t",initialDice, "gives", total)
-        print("\n###")
+        print("###")
