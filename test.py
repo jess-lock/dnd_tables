@@ -1,12 +1,5 @@
-# print("hello")
 import pandas as pd
-
 from random import randrange
-
-# excel_data = pd.ExcelFile('testSheet.xlsx')
-# print(df)
-# df1 = pd.read_excel(df, 'Settlements')
-# print(df1)
 def inputMatching(inp):
     match inp:
         case 1:
@@ -26,12 +19,10 @@ for sheet_name in excel_data.sheet_names:
     sheet_dataframes[sheet_name] = pd.read_excel(excel_file_path, sheet_name=sheet_name, header=None)
 
 keepGoing = True
-# print(len(sheet_dataframes))
 
 while keepGoing:
     introText = "\nWhat table do you want to roll?" #\n(1) Settlements\n(2) Ruins\n Input:"
     for j in range(1, len(sheet_dataframes)+1):
-        # print(j)
         introText = introText + f"\n{j} {inputMatching(j)}"
     
     introText = introText + "\n Input: "
@@ -51,18 +42,15 @@ while keepGoing:
         initialDice = current_df.iloc[roll-1].loc[2]
         numberOfDice, diceNumber = initialDice.split("d")
 
-        # diceNumber = int(initialDice[1].split("d"))
         if "+" in initialDice:
             diceNumber, addition = diceNumber.split("+")
         else:
             addition = 0
-        # print(initialDice)
-        # print(numberOfDice)   
-        # print(addition)
+
         total = 0
         for i in range(0, int(numberOfDice)):
             total = total + randrange(1, int(diceNumber))
         
         total = total+int(addition)
         print("\t",initialDice, "gives", total)
-        print("###")
+    print("###")
