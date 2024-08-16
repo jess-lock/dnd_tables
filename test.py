@@ -53,4 +53,4 @@ while keepGoing:
         
         total = total+int(addition)
         print("\t",initialDice, "gives", total)
-        print("###")
+    print("###")
