@@ -35,7 +35,7 @@ keepGoing = True
 print("Welcome! This is a script to auto-generate a dungeon for Svet's d&d campaign. To exit, enter 'q' in the prompt. Otherwise, to generate a new prompt type 'y'")
 
 while keepGoing:
-    introTest = "\nGenerate a new location [y/q]:\n"
+    introText = "\nGenerate a new location [y/q]:\n"
     choice = input(introText)
     if (choice == "exit") or (choice == "quit") or (choice == "q"):
         exit()
