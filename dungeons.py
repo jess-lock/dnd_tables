@@ -16,17 +16,35 @@ from random import randrange
 excel_file_path = 'Dungeon Creation.xlsx'
 
 excel_data = pd.ExcelFile(excel_file_path)
-sheet_dataframes = {}
+sheet_dataframes = []
+sheets = []
 for sheet_name in excel_data.sheet_names:
-    sheet_dataframes[sheet_name] = pd.read_excel(excel_file_path, sheet_name=sheet_name, header=None)
+    sheet_dataframes.append(pd.read_excel(excel_file_path, sheet_name=sheet_name, header=None))
+    # sheets.append(sheet_name)
 
+# sheet = 1
 current_df = sheet_dataframes[0]
 print(current_df)
+for selection in sheet_dataframes:
+    # print(i)
+    # print(selection.iloc[0].to_list())
+    print(selection.iloc[0].to_list()[0])
 
-# keepGoing = True
+keepGoing = True
 # # print(len(sheet_dataframes))
+print("Welcome! This is a script to auto-generate a dungeon for Svet's d&d campaign. To exit, enter 'q' in the prompt. Otherwise, to generate a new prompt type 'y'")
 
-# while keepGoing:
+while keepGoing:
+    introTest = "\nGenerate a new location [y/q]:\n"
+    choice = input(introText)
+    if (choice == "exit") or (choice == "quit") or (choice == "q"):
+        exit()
+    elif (choice == "y") or (choice == "yes") or (choice == "yep"):
+        print("Insert stuff here")
+    elif (choice == "no"):
+        print("fuck off")
+    else:
+        continue
 #     introText = "\nWhat table do you want to roll?" #\n(1) Settlements\n(2) Ruins\n Input:"
 #     for j in range(1, len(sheet_dataframes)+1):
 #         # print(j)
